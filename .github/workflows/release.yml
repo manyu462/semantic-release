@@ -19,7 +19,10 @@ jobs:
           registry-url: "https://registry.npmjs.org/"
 
       - name: Override npm registry
-        run: echo "registry=https://registry.npmjs.org/" > .npmrc
+        run: echo "registry=https://registry.npmjs.org/" > ~/.npmrc
+
+      - name: Clear npm cache
+        run: npm cache clean --force
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
