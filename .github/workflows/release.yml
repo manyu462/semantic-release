@@ -37,7 +37,7 @@ jobs:
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Print Partial NPM_TOKEN (For Debugging Only)
-        run: echo "NPM_TOKEN starts with: ${NPM_TOKEN:0:4}****"
+        run: echo "NPM_TOKEN starts with ${NPM_TOKEN:0:4}****"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
