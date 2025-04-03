@@ -24,6 +24,12 @@ jobs:
           npm config get registry
           yarn config get registry
 
+      - name: Debug yarn.lock for AWS CodeArtifact
+        run: cat yarn.lock | grep "codeartifact" || echo "No CodeArtifact found in yarn.lock"
+
+      - name: Remove yarn.lock (if needed)
+        run: rm -f yarn.lock
+
       - name: Remove any existing npmrc
         run: |
           rm -f ~/.npmrc
@@ -32,11 +38,8 @@ jobs:
       - name: Remove Yarn global config
         run: rm -f ~/.yarnrc.yml
 
-      - name: Set correct npm registry
-        run: |
-          echo "registry=https://registry.npmjs.org/" > ~/.npmrc
-          npm config set registry https://registry.npmjs.org/
-          yarn config set registry https://registry.npmjs.org/
+      - name: Override Yarn registry
+        run: yarn config set npmRegistryServer "https://registry.npmjs.org/"
 
       - name: Clear npm cache
         run: npm cache clean --force
@@ -47,5 +50,5 @@ jobs:
       - name: Run Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # If publishing to npm
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
