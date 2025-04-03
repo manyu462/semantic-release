@@ -32,20 +32,19 @@ jobs:
       - name: Override Yarn registry
         run: yarn config set npmRegistryServer "https://registry.npmjs.org/"
 
+
+      - name: Configure npm authentication
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Debug NPM Token
+        run: npm whoami || echo "Invalid token"
+
       - name: Clear npm cache
         run: npm cache clean --force
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
-      - name: Configure npm authentication
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-
-      - name: Debug Environment Variables
-        run: env | grep -E "NPM|GITHUB"
-
       - name: Run Semantic Release
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
