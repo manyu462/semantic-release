@@ -38,8 +38,14 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Configure npm authentication
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Debug Environment Variables
+        run: env | grep -E "NPM|GITHUB"
+
       - name: Run Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
