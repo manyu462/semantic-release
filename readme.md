@@ -23,7 +23,8 @@ now - 1.0.1
 develop released 1.2.0 and through PR 1.2.0 is released to main hasn't released any version 
 
 (with pre-release: true)
-"chore(readme): expected version to be 1.2.0-develop.1"   
+"chore(readme): expected version to be 1.2.0-develop.1"   got 1.2.1-develop.1
+"chore(readme): expected version to be 1.2.1-develop.2"   
 
 
 
