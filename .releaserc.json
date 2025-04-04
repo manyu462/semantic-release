@@ -9,7 +9,8 @@
           "range": "1.x"
       },
       {
-          "name": "develop"
+          "name": "develop",
+          "prerelease": true
       }
   ],
   "plugins": [
