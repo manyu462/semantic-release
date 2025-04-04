@@ -42,5 +42,4 @@ Updated develop with main released tag 1.2.2 and check next develop pre-release 
 "chore(readme): expected version to be 1.2.3-develop.1"    got 1.2.1-develop.6 as package.json manually updated with 1.2.2 (develop)
 
 synced main to develop
-"chore(readme): expected version to be 1.2.3-develop.1"   
-
+"chore(readme): expected version to be 1.2.3-develop.1"   WORKED
