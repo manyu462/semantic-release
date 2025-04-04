@@ -35,4 +35,8 @@ check next version in develop
 develop released 1.2.1-develop.4 and through PR 1.2.2 is released to main as "main":true and updated in package.json(master/main) but not in develop
 
 check next version in develop
-"chore(readme): expected version to be 1.2.1-develop.5"   
+"chore(readme): expected version to be 1.2.1-develop.5"   WORKED
+
+Updated develop with main released tag 1.2.2 and check next develop pre-release version
+
+"chore(readme): expected version to be 1.2.3-develop.1"   
