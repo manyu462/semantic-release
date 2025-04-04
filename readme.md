@@ -29,4 +29,5 @@ develop released 1.2.0 and through PR 1.2.0 is released to main hasn't released 
 develop released 1.2.1-develop.2 and through PR 1.2.1 is released to main as "main":true
 
 check next version in develop
-"chore(readme): expected version to be 1.2.2-develop.1"   
+"chore(readme): expected version to be 1.2.2-develop.1"   got 1.2.1-develop.3 as package.json is not updated with 1.2.1 (develop)
+"chore(readme): expected version to be 1.2.1-develop.4"  
