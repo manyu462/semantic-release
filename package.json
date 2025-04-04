@@ -1,13 +1,13 @@
 {
   "name": "semantic-release",
-  "version": "1.0.0",
+  "version": "1.2.1-develop.3",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "release": "semantic-release"
   },
   "publishConfig": {
-  "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "semantic-release": "^22.0.0",
