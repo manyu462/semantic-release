@@ -43,3 +43,8 @@ Updated develop with main released tag 1.2.2 and check next develop pre-release 
 
 synced main to develop
 "chore(readme): expected version to be 1.2.3-develop.1"   WORKED
+
+
+
+## scenario 2
+develop has 1.2.3-develop.2" and feat commit
