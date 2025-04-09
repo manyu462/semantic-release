@@ -49,3 +49,7 @@ synced main to develop
 ## scenario 2
 develop has 1.2.3-develop.2" and feat commit generated 1.3.0
 develop has again with feat
+
+
+## master 
+master has 1.4.0 just commit feat
