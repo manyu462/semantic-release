@@ -11,7 +11,11 @@
       {
           "name": "develop",
           "prerelease": "develop"
-      }
+      },
+      {
+            "name": "hotfix",
+            "prerelease": "hotfix"
+     }
   ],
   "plugins": [
       [
