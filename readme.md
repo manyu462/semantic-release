@@ -47,7 +47,14 @@ synced main to develop
 
 
 ## scenario 2
-develop has 1.2.3-develop.2" and feat commit generated 1.3.0
-develop has again with feat generated 1.4.0
+develop has 1.2.3-develop.2" and feat commit generated 1.3.0   
+develop has push again with feat generated 1.4.0
 
-main has 1.5.0 and push feat to develop check
+PR develop to main fail 1.4.0 because main generated 1.4.0 which is already present
+main has 1.5.0 and push feat to develop check, develop also generated 1.5.0 and failed because of existing tag
+
+
+
+
+## new
+
