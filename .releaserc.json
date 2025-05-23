@@ -6,10 +6,11 @@
       },
       {
           "name": "hotfix",
-          "range": "1.x"
+          "prerelease": true
       },
       {
-          "name": "develop"
+          "name": "develop",
+          "prerelease": true
       }
   ],
   "plugins": [
