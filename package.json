@@ -1,6 +1,6 @@
 {
   "name": "semantic-release",
-  "version": "1.5.0-hotfix.1",
+  "version": "2.1.0-hotfix.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
