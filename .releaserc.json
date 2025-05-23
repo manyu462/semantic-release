@@ -5,10 +5,6 @@
           "main": true
       },
       {
-          "name": "hotfix",
-          "range": "1.x"
-      },
-      {
           "name": "develop",
           "prerelease": "develop"
       },
