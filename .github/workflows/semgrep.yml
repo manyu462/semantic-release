@@ -1,0 +1,73 @@
+name: Semgrep Secure Scan
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - ci-*
+  pull_request:
+    branches:
+      - '*'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  semgrep:
+    name: Run Semgrep
+    runs-on: ubuntu-latest
+
+    container:
+      image: returntocorp/semgrep
+
+    steps:
+      - name: Checkout PR code safely
+        uses: actions/checkout@v4
+
+      - name: Create output directory
+        run: mkdir -p semgrep/results
+
+      - name: Run Semgrep scan (combined rules from .semgrep.yml)
+        run: semgrep --config p/typescript --config p/nodejsscan --config p/expressjs --config p/react --config p/javascript --config p/sqli --config p/r2c-security-audit --config p/gitleaks --config p/html --json --output=semgrep/results/results.json
+
+      - name: Upload raw Semgrep results
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-results
+          path: semgrep/results/results.json
+
+      - name: Parse findings and fail on issues
+        id: parse
+        run: |
+          findings=$(jq '.results | length' semgrep/results/results.json)
+          echo "findings=$findings" >> $GITHUB_OUTPUT
+          if [ "$findings" -gt 0 ]; then
+            echo "::error ::$findings Semgrep issue(s) found"
+            exit 1
+          fi
+
+      - name: Extract Summary for PR comment
+        id: summary
+        run: |
+          summary=$(jq -r '[.results[] | {check_id, path: .path, severity}] 
+            | group_by(.severity) 
+            | map({(.[0].severity): length}) 
+            | add' semgrep/results/results.json)
+          echo "summary<<EOF" >> $GITHUB_ENV
+          echo "$summary" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Comment findings on PR
+        if: steps.parse.outputs.findings != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const summary = process.env.summary;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🔍 **Semgrep Findings Summary**\n\`\`\`json\n${summary}\n\`\`\``
+            })
