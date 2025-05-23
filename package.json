@@ -1,6 +1,6 @@
 {
   "name": "semantic-release",
-  "version": "2.1.0-develop.2",
+  "version": "2.1.0-develop.3",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
