@@ -31,6 +31,8 @@ jobs:
 
       - name: Run Semgrep scan (combined rules from .semgrep.yml)
         run: semgrep --config p/typescript --config p/nodejsscan --config p/expressjs --config p/react --config p/javascript --config p/sqli --config p/r2c-security-audit --config p/gitleaks --config p/html --json --output=semgrep/results/results.json
+        env:
+          SEMGREP_SEND_METRICS: "off"
 
       - name: Upload raw Semgrep results
         uses: actions/upload-artifact@v4
